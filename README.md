@@ -1,67 +1,58 @@
-# IDOWeatherSDK
+# Weather SDK Documentation
 
-基于 Kotlin Multiplatform 的天气 SDK，支持 Android 和 iOS 平台。
+此仓库包含 **IDOWeatherSDK** 的官方文档构建源码。
 
-## 功能特性
+## 项目简介
 
-- ✅ 跨平台支持 (Android AAR, iOS Framework)
-- ✅ 单例模式，简单易用
-- ✅ 返回原始 JSON 响应 (便于自定义解析)
-- ✅ 网络请求重试机制 (指数退避)
-- ✅ 请求超时处理
-- ✅ 请求频率限制
-- ✅ 完善的错误处理
+本文档项目使用 **MkDocs** 和 **Material for MkDocs** 主题构建，支持中文与英文双语切换。
 
-## 项目结构
+- **源项目**: [IDOWeatherSDK](https://github.com/IDOWeatherSDK/IDOWeatherSDK)
+- **文档预览**: [GitHub Pages Link](https://idoosmart.github.io/Weather_MkDocs/) (请根据实际 Pages 地址修改)
 
-```
-IDOWeatherSDK/
-├── library/                    # SDK 核心库
-│   └── src/
-│       ├── commonMain/         # 公共代码
-│       ├── androidMain/        # Android 平台代码
-│       └── iosMain/            # iOS 平台代码
-├── example-android/            # Android 示例应用
-└── example-ios/                # iOS 示例应用
+## 目录结构
+
+```text
+.
+├── USAGE.md               # 中文文档源文件 (SDK 使用指南)
+├── USAGE_EN.md            # 英文文档源文件 (English Guide)
+├── mkdocs.yml             # MkDocs 站点配置文件
+├── preview_docs.sh        # 本地预览辅助脚本
+├── deploy_docs.sh         # 本地发布辅助脚本
+└── .github
+    └── workflows
+        └── publish-docs.yml # GitHub Actions 自动部署配置
 ```
 
-## 构建
+## 如何贡献/修改文档
 
-### 前置条件
+**注意**: 请勿直接修改 `docs/` 目录！该目录是构建过程中自动生成的。
 
-- JDK 17+
-- Android SDK (compileSdk 34)
-- Xcode 15+ (用于 iOS)
+1.  **修改内容**：
+    *   中文内容请编辑 `USAGE.md`
+    *   英文内容请编辑 `USAGE_EN.md`
 
-### 构建 Android AAR
+2.  **本地预览**：
+    运行以下脚本可自动安装依赖并启动本地服务器：
+    ```bash
+    ./preview_docs.sh
+    ```
+    访问 `http://127.0.0.1:8000` 查看效果。
+
+3.  **提交更改**：
+    提交并推送到 `main` 分支：
+    ```bash
+    git push origin main
+    ```
+    GitHub Actions 会自动构建并将静态网站发布到 `gh-pages` 分支。
+
+## 环境依赖 (手动安装)
+
+如果你不使用辅助脚本，可以手动安装以下 Python 依赖：
 
 ```bash
-./gradlew :library:assembleRelease
+pip install mkdocs-material mkdocs-static-i18n
 ```
 
-输出: `library/build/outputs/aar/library-release.aar`
+## 许可证
 
-### 构建 iOS Framework
-
-```bash
-./gradlew :library:linkReleaseFrameworkIosArm64
-# 或构建 Fat Framework (包含多架构)
-./gradlew :library:assembleFatFramework
-```
-
-输出: `library/build/fat-framework/release/IDOWeatherSDK.framework`
-
-### 构建示例应用
-
-```bash
-# Android
-./gradlew :example-android:assembleDebug
-
-# iOS (使用 Xcode 打开)
-open example-ios/IDOWeatherExample.xcodeproj
-```
-
-## 使用方法
-
-详细使用文档请参考 [使用指南](usage.md)。
-
+MIT License
