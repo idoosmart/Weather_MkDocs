@@ -1,0 +1,43 @@
+name: Publish Docs
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install MkDocs Dependencies
+        run: |
+          pip install mkdocs-material
+          pip install mkdocs-static-i18n
+
+      - name: Prepare Docs
+        run: |
+          mkdir -p docs
+          cp USAGE.md docs/index.md
+          cp USAGE_EN.md docs/index.en.md
+          # 如果有图片资源，也需要拷贝
+          # cp -r images docs/ || true
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
