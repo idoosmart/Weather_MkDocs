@@ -17,6 +17,11 @@ cp USAGE.md docs/index.md
 echo "📝 复制英文文档 -> docs/index.en.md"
 cp USAGE_EN.md docs/index.en.md
 
+# 复制样式表
+if [ -d "stylesheets" ]; then
+    cp -r stylesheets docs/
+fi
+
 echo "🚀 开始构建并推送到 gh-pages 分支..."
 # mkdocs gh-deploy 会自动构建并提交到 gh-pages 分支
 mkdocs gh-deploy --force

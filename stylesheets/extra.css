@@ -1,0 +1,4 @@
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  border: 1px solid var(--md-typeset-table-color);
+}

@@ -39,6 +39,11 @@ cp USAGE.md docs/index.md
 # 将 USAGE_EN.md 作为英文首页
 cp USAGE_EN.md docs/index.en.md
 
+# 复制样式表
+if [ -d "stylesheets" ]; then
+    cp -r stylesheets docs/
+fi
+
 echo "🚀 启动本地预览服务器..."
 echo "👉 请在浏览器访问: http://127.0.0.1:8000"
 echo "⌨️  按 Ctrl+C 停止服务器"

@@ -1,7 +1,7 @@
 site_name: IDOWeatherSDK 文档
 site_description: 跨平台 IDOWeatherSDK 开发文档
 site_author: IDOSDK Team
-repo_url: https://github.com/idoosmart/Weather_MkDocs
+#repo_url: https://github.com/idoosmart/Weather_MkDocs
 repo_name: Weather_MkDocs
 edit_uri: ""
 
@@ -30,7 +30,7 @@ theme:
         name: Switch to light mode
 
 nav:
-  - 首页: index.md
+  - 使用说明: index.md
 
 markdown_extensions:
   - admonition
@@ -62,11 +62,7 @@ plugins:
         en:
           首页: Home
 
-extra:
-  alternate:
-    - name: 简体中文
-      link: /
-      lang: zh
-    - name: English
-      link: /en/
-      lang: en
+
+
+extra_css:
+  - stylesheets/extra.css
